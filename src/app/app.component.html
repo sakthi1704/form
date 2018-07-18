@@ -1,0 +1,35 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h3>Reactive form</h3>
+<form [formGroup]="angularForm">
+  <div class="form-container">
+          <mat-form-field>
+              <input matInput formControlName="name" placeholder="Enter your Name">
+              <mat-hint>Enter a valid name</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput  placeholder="Enter your email" [formControl]="email" required >
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}
+            </mat-error>
+          </mat-form-field> 
+          <mat-form-field>
+            <input matInput formControlName="mobile" placeholder="Enter your Mobile.no">
+          </mat-form-field>       
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button *ngFor ="let genderDetail of gender" [value]="genderDetail.value">
+              {{genderDetail.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>   
+          <mat-form-field>
+              <mat-select formControlName="Qualification" placeholder="Qualification">
+                <mat-option *ngFor="let qualification of qualifications" [value]="qualification.value">
+                  {{ qualification.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button (click)="addUser(name.value, email.value)" mat-raised-button color="accent">
+              Register
+            </button>
+  </div>
+</form>
+
+
